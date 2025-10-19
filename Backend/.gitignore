@@ -1,0 +1,9 @@
+tf-env
+/Dataset
+__pycache__/
+*.pyc
+.env
+.vscode/
+instance
+*.sqlite3
+.DS_Store
