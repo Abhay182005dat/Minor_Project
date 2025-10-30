@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras.optimizers import Adam
 from huggingface_hub import hf_hub_download
-import os
+import os , shutil 
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -10,8 +10,11 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 MODEL_PATH = hf_hub_download(
     repo_id = os.getenv("REPO_ID"),
     filename= os.getenv("MODEL"),
-    token=HF_TOKEN
+    local_dir="Minor_Project/Backend/models",
+    local_dir_use_symlinks=False,
+    token=HF_TOKEN,
 )
+
 
 model = tf.keras.models.load_model(MODEL_PATH, compile=False)
 

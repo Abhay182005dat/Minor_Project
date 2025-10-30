@@ -1,10 +1,12 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile 
 from img_preprocess import preprocess_image
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 import io
 from predict import predict_from_tensor
-
+import json
+from fastapi.responses import JSONResponse
+import os
 
 app = FastAPI()
 
