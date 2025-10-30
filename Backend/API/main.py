@@ -22,6 +22,7 @@ def home():
     return JSONResponse(content='API is running')
 
 
+
 @app.post('/predictImage')
 async def predict_image(image: UploadFile = File(...)):
     # read image
