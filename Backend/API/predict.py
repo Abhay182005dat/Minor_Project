@@ -1,9 +1,19 @@
 import tensorflow as tf
 from tensorflow.keras.optimizers import Adam
+from huggingface_hub import hf_hub_download
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-# Load trained TensorFlow/Keras model once when this module is imported
-MODEL_PATH = 'Model.h5' 
-model = tf.keras.models.load_model(MODEL_PATH,compile=False)
+HF_TOKEN = os.getenv("HF_TOKEN")
+
+MODEL_PATH = hf_hub_download(
+    repo_id = os.getenv("REPO_ID"),
+    filename= os.getenv("MODEL"),
+    token=HF_TOKEN
+)
+
+model = tf.keras.models.load_model(MODEL_PATH, compile=False)
 
 model.compile(optimizer=Adam(learning_rate=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
 
