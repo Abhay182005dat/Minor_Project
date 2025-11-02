@@ -16,17 +16,20 @@ export default function ImageUploader() {
 	const fieldName = useMemo(() => (endpoint.endsWith('/predictImage') ? 'image' : 'file'), [endpoint])
 
 	const onChooseClick = useCallback(() => {
+		console.log(fileInputRef.current);
 		fileInputRef.current?.click()
 	}, [])
 
 	const onFilesSelected = useCallback((files) => {
-		if (!files || !files.length) return
+		if (!files || !files.length) return  
 		const file = files[0]
+		console.log(file);
 		if (!file.type.startsWith('image/')) {
 			setStatus('Please choose an image file.')
 			return
 		}
 		const url = URL.createObjectURL(file)
+		console.log(url);
 		setPreviewUrl(url)
 		setStatus('Ready to upload.')
 	}, [])
@@ -43,7 +46,7 @@ export default function ImageUploader() {
 	const onDragOver = useCallback((e) => { e.preventDefault() }, [])
 
 	const onClear = useCallback(() => {
-		if (fileInputRef.current) fileInputRef.current.value = ''
+		if (fileInputRef.current) fileInputRef.current.value = ''  // do not use fileInputRef.current=='null';
 		setPreviewUrl('')
 		setStatus('Cleared. Choose another image.')
 	}, [])
@@ -54,27 +57,24 @@ export default function ImageUploader() {
 			setStatus('Please select an image first.')
 			return
 		}
-		const file = input.files[0]
-		const formData = new FormData()
+		const file = input.files[0]   //Takes first selected file
+		const formData = new FormData()   //Creates a new FormData object to store the file
+		console.log(fieldName);
+		console.log(file);
 		formData.append(fieldName, file)
-
 		setIsLoading(true)
 		setStatus('Warming backend and predicting...')
 		try {
-			// Wake server (Render cold start) – ignore errors
+			
 			await warmUp(endpoint)
 			setStatus('Uploading and predicting...')
 			const result = await predictWithFormData(endpoint, formData)
 			const parts = []
 			if (result && Object.prototype.hasOwnProperty.call(result, 'prediction')) parts.push(`Prediction: ${result.prediction}`)
 			if (result && Object.prototype.hasOwnProperty.call(result, 'confidence')) parts.push(`Confidence: ${result.confidence}`)
-			setStatus(parts.length ? parts.join('\n') : JSON.stringify(result, null, 2))
+			setStatus(parts.length ? parts.join('\n') : JSON.stringify(result, null, 2))  //result = { error: "Invalid file" }
 		} catch (err) {
-			const msg = err?.message || 'Unknown error'
-			const extra = msg.includes('Failed to fetch')
-				? '\nTip: Check the endpoint URL, server availability, and CORS. Try opening the URL in your browser and ensure /docs loads, then retry.'
-				: ''
-			setStatus(`Error: ${msg}${extra}`)
+			setStatus(`Error: ${err.message || 'Something went wrong'}`)
 		} finally {
 			setIsLoading(false)
 		}
@@ -145,3 +145,11 @@ export default function ImageUploader() {
 }
 
 
+// When a user selects a file, the browser stores a "placeholder path" string in input.value, like:
+// "C:\fakepath\my-image.jpg"
+// The real path is hidden for security.
+
+// Setting it to an empty string ('') tells the browser to forget the selected file. 
+// It’s like clearing the selection, so the user can choose a file again.
+
+// fileInputRef.current gives access to the real DOM node, allowing you to check which files are selected.
