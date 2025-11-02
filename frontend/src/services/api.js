@@ -1,11 +1,11 @@
 function withTimeout(ms) {
     const controller = new AbortController()
     const id = setTimeout(() => {
-        // Provide an explicit reason so errors are clearer across browsers
+      
         try {
             controller.abort('Timeout')
         } catch {
-            // Fallback in older browsers
+        
             controller.abort()
         }
     }, ms)
@@ -20,7 +20,7 @@ export async function warmUp(endpoint) {
 		await fetch(pingUrl, { method: 'GET', mode: 'cors', cache: 'no-store', keepalive: true, signal })
 		cancel()
 	} catch {
-		// ignore warm-up errors
+		
 	}
 }
 
@@ -31,7 +31,6 @@ export async function predictWithFormData(endpoint, formData) {
             method: 'POST',
             mode: 'cors',
             body: formData,
-            // keepalive is unnecessary for long-running uploads and can cause issues
             signal,
         })
         cancel()
@@ -40,7 +39,7 @@ export async function predictWithFormData(endpoint, formData) {
             try {
                 errorText = await response.text()
             } catch {
-                // ignore
+               
             }
             throw new Error(`${response.status} - ${errorText || 'Request failed'}`)
         }
