@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { predictWithFormData, warmUp } from '../services/api.js'
+import { savePredictionToLocalHistory } from '../utils/history.js'
 
 const DEFAULT_ENDPOINT = 'https://minor-project-petx.onrender.com/predictImage'
 const ALT_ENDPOINT = 'https://minor-project-petx.onrender.com/predict'
@@ -73,6 +74,17 @@ export default function ImageUploader() {
 			if (result && Object.prototype.hasOwnProperty.call(result, 'prediction')) parts.push(`Prediction: ${result.prediction}`)
 			if (result && Object.prototype.hasOwnProperty.call(result, 'confidence')) parts.push(`Confidence: ${result.confidence}`)
 			setStatus(parts.length ? parts.join('\n') : JSON.stringify(result, null, 2))  //result = { error: "Invalid file" }
+
+			// Save to local history for admin dashboard
+			if (result && result.prediction != null) {
+				try {
+					savePredictionToLocalHistory({
+						prediction: result.prediction,
+						confidence: result.confidence,
+						metadata: { filename: file.name, type: file.type }
+					})
+				} catch {}
+			}
 		} catch (err) {
 			setStatus(`Error: ${err.message || 'Something went wrong'}`)
 		} finally {
