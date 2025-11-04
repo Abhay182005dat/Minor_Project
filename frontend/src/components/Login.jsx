@@ -18,13 +18,6 @@ export default function Login() {
 			// Simple client-side auth for demo (no backend changes)
 			const isAdmin = email.trim().toLowerCase().startsWith('admin') || email.trim().toLowerCase() === 'admin@petx'
 			const isUser = !isAdmin
-
-			if (!email || !password) {
-				setError('Please enter email and password')
-				setIsSubmitting(false)
-				return
-			}
-
 			try {
 				window.localStorage.setItem('petx:role', isAdmin ? 'admin' : 'user')
 				window.localStorage.setItem('petx:user', JSON.stringify({ email }))
@@ -51,7 +44,7 @@ export default function Login() {
 					<input
 						type="email"
 						className="btn"
-						placeholder="admin@petx or user@example.com"
+						placeholder="Boss please Enter your email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						style={{ width: '100%' }}
