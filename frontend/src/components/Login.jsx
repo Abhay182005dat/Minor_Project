@@ -16,7 +16,7 @@ export default function Login() {
 
 		setTimeout(() => {
 			// Simple client-side auth for demo (no backend changes)
-			const isAdmin = email.trim().toLowerCase().startsWith('admin') || email.trim().toLowerCase() === 'admin@petx'
+			const isAdmin = email.trim().toLowerCase().startsWith('admin') || email.trim().toLowerCase() === 'shabana@petx'
 			const isUser = !isAdmin
 			try {
 				window.localStorage.setItem('petx:role', isAdmin ? 'admin' : 'user')
@@ -26,9 +26,11 @@ export default function Login() {
 			const from = location.state?.from?.pathname
 			if (from) {
 				navigate(from, { replace: true })
-			} else if (isAdmin) {
+			} 
+			else if (isAdmin) {
 				navigate('/admin', { replace: true })
-			} else {
+			} 
+			else {
 				navigate('/upload', { replace: true })
 			}
 		}, 400)
@@ -44,7 +46,7 @@ export default function Login() {
 					<input
 						type="email"
 						className="btn"
-						placeholder="Boss please Enter your email"
+						placeholder="Enter your email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						style={{ width: '100%' }}
