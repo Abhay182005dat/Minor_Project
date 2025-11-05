@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { predictWithFormData, warmUp } from '../services/api.js'
 import { savePredictionToLocalHistory } from '../utils/history.js'
+import './Uploader.css'
 
 const DEFAULT_ENDPOINT = 'https://minor-project-petx.onrender.com/predictImage'
 const ALT_ENDPOINT = 'https://minor-project-petx.onrender.com/predict'
@@ -92,68 +93,70 @@ export default function ImageUploader() {
 		}
 	}, [fieldName, endpoint])
 
-	return (
-		<div className="card row">
-			<div
-				id="dropzone"
-				className="dropzone"
-				onClick={onChooseClick}
-				onDrop={onDrop}
-				onDragOver={onDragOver}
-				role="button"
-				title="Click to select or drag and drop"
-			>
-				<strong>Click to choose</strong> or drag & drop an image here
-				<br />
-				<span className="muted">PNG, JPG, JPEG</span>
-				<input
-					ref={fileInputRef}
-					id="fileInput"
-					type="file"
-					accept="image/*"
-					style={{ display: 'none' }}
-					onChange={(e) => onFilesSelected(e.target.files)}
-				/>
-			</div>
+    return (
+        <div className="uploader-card">
+            <div className="uploader-header">
+                <div>
+                    <div className="uploader-title">Upload an image</div>
+                    <div className="uploader-subtitle">PNG or JPG, up to 10MB</div>
+                </div>
+                <div className="uploader-endpoint">
+                    <label htmlFor="endpointInput" className="uploader-endpoint-label">Endpoint</label>
+                    <input
+                        id="endpointInput"
+                        className="uploader-input"
+                        list="endpointOptions"
+                        value={endpoint}
+                        onChange={(e) => {
+                            setEndpoint(e.target.value)
+                            try { window.localStorage.setItem('petx:endpoint', e.target.value) } catch {}
+                        }}
+                        title="Enter full URL to your API endpoint"
+                    />
+                    <datalist id="endpointOptions">
+                        <option value={DEFAULT_ENDPOINT}>/predictImage (field: image)</option>
+                        <option value={ALT_ENDPOINT}>/predict (field: file)</option>
+                    </datalist>
+                </div>
+            </div>
 
-			{previewUrl ? (
-				<div id="preview" className="preview">
-					<img id="previewImg" alt="preview" src={previewUrl} />
-					<div>
-						<div className="actions">
-							<button id="predictBtn" className="btn primary" onClick={onPredict} disabled={isLoading}>
-								{isLoading ? 'Predicting…' : 'Upload & Predict'}
-							</button>
-							<button id="clearBtn" className="btn" type="button" onClick={onClear} disabled={isLoading}>Clear</button>
-						</div>
-						<pre className="status" id="status">{status}</pre>
-					</div>
-				</div>
-			) : (
-				<pre className="status" id="status">{status}</pre>
-			)}
+            <div
+                id="dropzone"
+                className={`uploader-dropzone${isLoading ? ' is-loading' : ''}`}
+                onClick={onChooseClick}
+                onDrop={onDrop}
+                onDragOver={onDragOver}
+                role="button"
+                title="Click to select or drag and drop"
+            >
+                {previewUrl ? (
+                    <img id="previewImg" alt="preview" src={previewUrl} className="uploader-preview" />
+                ) : (
+                    <div className="uploader-dropzone-text">
+                        <strong>Click to choose</strong> or drag & drop an image here
+                        <div className="uploader-hint">PNG, JPG, JPEG</div>
+                    </div>
+                )}
+                <input
+                    ref={fileInputRef}
+                    id="fileInput"
+                    type="file"
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    onChange={(e) => onFilesSelected(e.target.files)}
+                />
+            </div>
 
-			<div className="endpoint">
-				<label htmlFor="endpointInput">Endpoint:</label>{' '}
-				<input
-					id="endpointInput"
-					className="btn"
-					style={{ width: '100%' }}
-					list="endpointOptions"
-					value={endpoint}
-					onChange={(e) => {
-						setEndpoint(e.target.value)
-						try { window.localStorage.setItem('petx:endpoint', e.target.value) } catch {}
-					}}
-					title="Enter full URL to your API endpoint"
-				/>
-				<datalist id="endpointOptions">
-					<option value={DEFAULT_ENDPOINT}>/predictImage (field: image)</option>
-					<option value={ALT_ENDPOINT}>/predict (field: file)</option>
-				</datalist>
-			</div>
-		</div>
-	)
+            <div className="uploader-actions">
+                <button id="predictBtn" className="uploader-btn primary" onClick={onPredict} disabled={isLoading}>
+                    {isLoading ? 'Predicting…' : 'Upload & Predict'}
+                </button>
+                <button id="clearBtn" className="uploader-btn" type="button" onClick={onClear} disabled={isLoading}>Clear</button>
+            </div>
+
+            <pre className="uploader-status" id="status">{status}</pre>
+        </div>
+    )
 }
 
 

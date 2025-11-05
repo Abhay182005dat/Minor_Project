@@ -1,0 +1,66 @@
+.uploader-card {
+	background: rgba(255,255,255,.04);
+	border: 1px solid rgba(255,255,255,.08);
+	border-radius: 16px;
+	padding: 16px;
+	box-shadow: 0 10px 30px rgba(0,0,0,.35);
+	width: 100%;
+	max-width: 960px;
+}
+
+.uploader-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+	gap: 16px;
+	margin-bottom: 12px;
+}
+
+.uploader-title { font-weight: 800; letter-spacing: .3px; }
+.uploader-subtitle { opacity: .7; font-size: .9rem; }
+
+.uploader-endpoint { display: grid; gap: 6px; min-width: 320px; }
+.uploader-endpoint-label { font-size: 12px; opacity: .8; }
+.uploader-input {
+	width: 100%;
+	padding: 10px 12px;
+	border-radius: 10px;
+	border: 1px solid rgba(255,255,255,.12);
+	background: rgba(17,24,39,.6);
+	color: #e5e7eb;
+}
+
+.uploader-dropzone {
+	border: 2px dashed rgba(255,255,255,.18);
+	border-radius: 14px;
+	padding: 24px;
+	text-align: center;
+	cursor: pointer;
+	transition: border-color .2s ease, background .2s ease;
+	min-height: clamp(280px, 55vh, 640px);
+	display: grid;
+	place-items: center;
+	background: rgba(255,255,255,.02);
+}
+.uploader-dropzone:hover { border-color: #8b5cf6; background: rgba(139,92,246,.06); }
+.uploader-dropzone.is-loading { pointer-events: none; opacity: .8; }
+
+.uploader-dropzone-text { opacity: .9; }
+.uploader-hint { opacity: .6; font-size: .9rem; }
+
+.uploader-preview { max-width: 100%; max-height: 280px; border-radius: 10px; object-fit: cover; }
+
+.uploader-actions { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+.uploader-btn {
+	appearance: none; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.08);
+	color: #e5e7eb; padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 700;
+}
+.uploader-btn.primary { background: #8b5cf6; border-color: #8b5cf6; color: white; }
+.uploader-btn:disabled { opacity: .7; cursor: not-allowed; }
+
+.uploader-status {
+	margin-top: 12px; padding: 12px; border-radius: 10px; background: rgba(255,255,255,.04);
+	border: 1px solid rgba(255,255,255,.08); white-space: pre-wrap; word-break: break-word;
+}
+
+

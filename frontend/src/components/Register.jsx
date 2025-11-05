@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import GoogleAuthButton from './auth/GoogleAuthButton.jsx'
 import './auth/Auth.css'
 
 export default function Register() {
@@ -39,9 +38,7 @@ return (
 				</div>
 			</div>
 		</form>
-		<div style={{ marginTop: 12, width: '100%', maxWidth: 380 }}>
-			<GoogleAuthButton mode="register" />
-		</div>
+		{/* Google OAuth removed */}
 	</div>
 )
 }

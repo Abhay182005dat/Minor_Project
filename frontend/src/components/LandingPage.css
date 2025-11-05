@@ -123,7 +123,7 @@
 .hero-right { display: grid; place-items: center; }
 .device-frame { width: min(520px, 90%); aspect-ratio: 4/5; border-radius: 32px; position: relative; background: #0e1319; border: 2px solid rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.03), 0 20px 60px rgba(0,0,0,.6); overflow: hidden; }
 .device-glow { position: absolute; inset: 0; background: radial-gradient(60% 40% at 50% 20%, rgba(99,102,241,.25), transparent 60%), radial-gradient(40% 40% at 70% 70%, rgba(59,130,246,.25), transparent 60%); filter: blur(30px); }
-.face-placeholder { position: absolute; inset: 10%; border-radius: 24px; background: radial-gradient(50% 60% at 50% 40%, #1b2330, #0f141b 70%); border: 1px solid rgba(255,255,255,.06); }
+.face-placeholder { position: absolute; inset: 0; border-radius: 24px; background: #0e1319; border: 1px solid rgba(255,255,255,.06); background-image: url('https://imgs.search.brave.com/-GgcJuR1Elk7R0TPJ3b-kTpG0KEXBbfGGNJeV2KjXm4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9kMS5h/d3NzdGF0aWMuY29t/L29uZWRhbS9tYXJr/ZXRpbmctY2hhbm5l/bHMvd2Vic2l0ZS9h/d3MvZW5fVVMvcHJv/ZHVjdC1jYXRlZ29y/aWVzL2FpLW1sL2Fy/dGlmaWNpYWwtaW50/ZWxsaWdlbmNlL2Fw/cHJvdmVkL2ltYWdl/cy81YTJkYmI0OC1h/NmFmLTQ4YmQtOTVi/Zi1kOTQzYTQwODgx/MTAuNTg2OGY5MTU1/YzVhY2VkMzJiMjY0/ZjFhMzllYWRlZjNh/YjE3ZTcwZC5qcGVn'); background-size: contain; background-position: center; background-repeat: no-repeat; }
 
 .hero-content {
 	max-width: 900px;

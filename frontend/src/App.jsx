@@ -54,7 +54,9 @@ function UploadPage() {
 					</button>
 				</div>
 				<p className="muted">Upload an image and get a prediction from the backend.</p>
-				<ImageUploader />
+				<div className="upload-main">
+					<ImageUploader />
+				</div>
 				<footer>Backend: <code>https://minor-project-petx.onrender.com</code>. No backend changes required.</footer>
 			</div>
 		</div>

@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import GoogleAuthButton from './auth/GoogleAuthButton.jsx'
 import './auth/Auth.css'
 
 export default function Login() {
@@ -58,9 +57,7 @@ return (
 				</div>
 			</div>
 		</form>
-		<div style={{ marginTop: 12, width: '100%', maxWidth: 380 }}>
-			<GoogleAuthButton mode="login" />
-		</div>
+		{/* Google OAuth removed */}
 	</div>
 )
 }

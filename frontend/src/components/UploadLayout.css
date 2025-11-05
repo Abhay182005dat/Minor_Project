@@ -11,6 +11,14 @@
 	padding-top: 24px;
 }
 
-.upload-container { padding: 0 24px 24px; }
+.upload-container { padding: 0 24px 24px; max-width: none; width: 100%; }
+
+.upload-main {
+	display: grid;
+	align-items: center;
+	justify-items: end;
+	width: 100%;
+	min-height: calc(100vh - 220px);
+}
 
 
