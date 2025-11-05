@@ -4,163 +4,51 @@ import './LandingPage.css'
 
 export default function LandingPage() {
 	const navigate = useNavigate()
-	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 	const [isVisible, setIsVisible] = useState(false)
-
-	useEffect(() => {
-		setIsVisible(true)
-		const handleMouseMove = (e) => {
-			setMousePosition({ x: e.clientX, y: e.clientY })
-		}
-		window.addEventListener('mousemove', handleMouseMove)
-		return () => window.removeEventListener('mousemove', handleMouseMove)
-	}, [])
-
-	const features = [
-		{
-			icon: '🔍',
-			title: 'AI-Powered Detection',
-			description: 'Advanced machine learning models for accurate pet identification'
-		},
-		{
-			icon: '⚡',
-			title: 'Lightning Fast',
-			description: 'Get instant predictions in seconds with optimized processing'
-		},
-		{
-			icon: '📊',
-			title: 'Analytics Dashboard',
-			description: 'Track usage patterns and insights with admin dashboard'
-		},
-		{
-			icon: '🔒',
-			title: 'Secure & Private',
-			description: 'Your data is protected with industry-standard security'
-		}
-	]
+	useEffect(() => { setIsVisible(true) }, [])
 
 	const stats = [
-		{ number: '99%', label: 'Accuracy' },
-		{ number: '<1s', label: 'Response Time' },
-		{ number: '10K+', label: 'Predictions' },
-		{ number: '24/7', label: 'Available' }
+		{ number: '22.5k', label: 'Images Scanned' },
+		{ number: '98.9%', label: 'Accuracy' },
+		{ number: '<1s', label: 'Avg Response' }
 	]
 
 	return (
-		<div className="landing-page">
-			{/* Top Navigation */}
-			<header className="navbar">
+		<div className="landing-page minimal">
+			<header className="navbar simple">
 				<div className="nav-left" onClick={() => navigate('/')}>PetX</div>
 				<div className="nav-right">
 					<button className="btn-nav" onClick={() => navigate('/login')}>Log in</button>
-					<button className="btn-nav primary" onClick={() => navigate('/register')}>Sign up</button>
+					<button className="btn-nav primary" onClick={() => navigate('/register')}>Get Started</button>
 				</div>
 			</header>
 
-			{/* Hero Section */}
-			<section className={`hero-section ${isVisible ? 'visible' : ''}`}>
-				<div className="hero-content">
-					<div className="badge"><span className="badge-text">✨ Powered by AI</span></div>
-					
-					<h1 className="hero-title">
-						<span className="gradient-text">Landing Page Demo</span>
-					</h1>
-					
-					<p className="hero-subtitle">
-						Inspirational designs, illustrations, and graphic elements from the world's best designers.
-						<span className="highlight"> Explore PetX capabilities</span>
-					</p>
-
-					<div className="hero-buttons">
-						<button 
-							className="btn-primary pulse-btn"
-							onClick={() => navigate('/login')}
-						>
-							<span>Get Started</span>
-							<span className="btn-arrow">→</span>
-						</button>
-						<button 
-							className="btn-secondary"
-							onClick={() => navigate('/register')}
-						>
-							Create Account
-						</button>
-						<button 
-							className="btn-secondary"
-							onClick={() => navigate('/upload')}
-						>
-							Try Demo
-						</button>
-					</div>
-
-					{/* Stats */}
-					<div className="stats-grid">
-						{stats.map((stat, idx) => (
-							<div key={idx} className="stat-card" style={{ animationDelay: `${idx * 0.1}s` }}>
-								<div className="stat-number">{stat.number}</div>
-								<div className="stat-label">{stat.label}</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
-
-			{/* Features Section */}
-			<section className="features-section">
-				<div className="section-header">
-					<h2 className="section-title">
-						<span className="gradient-text">Why Choose</span> PetX?
-					</h2>
-					<p className="section-description">
-						Experience the future of pet identification technology
-					</p>
-				</div>
-
-				<div className="features-grid">
-					{features.map((feature, idx) => (
-						<div 
-							key={idx} 
-							className="feature-card"
-							style={{ animationDelay: `${idx * 0.15}s` }}
-						>
-							<div className="feature-icon">{feature.icon}</div>
-							<h3 className="feature-title">{feature.title}</h3>
-							<p className="feature-description">{feature.description}</p>
+			<section className={`hero hero-simple ${isVisible ? 'visible' : ''}`}>
+				<div className="hero-grid">
+					<div className="hero-left">
+						<h1 className="hero-heading">AI pet identifier</h1>
+						<p className="hero-copy">Discover accurate and fast pet identification powered by modern AI. Built for reliability and privacy.</p>
+						<div className="hero-ctas">
+							<button className="btn-primary" onClick={() => navigate('/login')}>Get Started</button>
+							<button className="btn-secondary" onClick={() => navigate('/upload')}>Try Demo</button>
 						</div>
-					))}
-				</div>
-			</section>
-
-			{/* CTA Section */}
-			<section className="cta-section">
-				<div className="cta-content">
-					<h2 className="cta-title">
-						Ready to <span className="gradient-text">transform</span> your pet identification?
-					</h2>
-					<p className="cta-description">
-						Join thousands of users who trust PetX for accurate, fast, and reliable predictions
-					</p>
-					<button 
-						className="btn-primary large pulse-btn"
-						onClick={() => navigate('/login')}
-					>
-						<span>Start Your Journey</span>
-						<span className="btn-arrow">→</span>
-					</button>
-				</div>
-			</section>
-
-			{/* Footer */}
-			<footer className="landing-footer">
-				<div className="footer-content">
-					<p>© 2024 PetX. Built with ❤️ and AI</p>
-					<div className="footer-links">
-						<a href="#" onClick={(e) => { e.preventDefault(); navigate('/login') }}>Login</a>
-						<span>•</span>
-						<a href="#" onClick={(e) => { e.preventDefault(); navigate('/upload') }}>Upload</a>
+						<div className="hero-stats">
+							{stats.map((s, i) => (
+								<div key={i} className="stat-item">
+									<div className="stat-num">{s.number}</div>
+									<div className="stat-label">{s.label}</div>
+								</div>
+							))}
+						</div>
+					</div>
+					<div className="hero-right">
+						<div className="device-frame">
+							<div className="device-glow" />
+							<div className="face-placeholder" />
+						</div>
 					</div>
 				</div>
-			</footer>
+			</section>
 		</div>
 	)
 }
