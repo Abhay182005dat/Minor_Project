@@ -1,0 +1,16 @@
+.upload-layout {
+	min-height: 100vh;
+	background: linear-gradient(180deg, #0b0f14, #0a0d12 60%, #0a0b0f);
+	color: #e5e7eb;
+}
+
+.upload-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 24px;
+}
+
+.upload-container { padding: 0 24px 24px; }
+
+

@@ -1,0 +1,61 @@
+/* Shared authentication styles (centered floating card on dark background) */
+.auth-page {
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	background: radial-gradient(1200px 600px at 50% -10%, rgba(88, 28, 135, .12), transparent 60%),
+		radial-gradient(1200px 600px at 120% 0%, rgba(37, 99, 235, .12), transparent 60%),
+		linear-gradient(180deg, #0b0f14, #0a0d12 60%, #0a0b0f);
+	color: #e5e7eb;
+	padding: 24px;
+}
+
+.auth-card {
+	width: 100%;
+	max-width: 380px;
+	background: rgba(17, 24, 39, 0.8);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255,255,255,0.08);
+	border-radius: 16px;
+	box-shadow: 0 20px 60px rgba(2, 6, 23, 0.6);
+	padding: 22px;
+}
+
+.auth-title {
+	text-align: center;
+	font-weight: 800;
+	letter-spacing: .4px;
+	margin: 0 0 12px;
+}
+
+.auth-input {
+	width: 100%;
+	padding: 10px 12px;
+	border-radius: 10px;
+	border: 1px solid rgba(255,255,255,.12);
+	background: rgba(17,24,39,.6);
+	color: #e5e7eb;
+	font-size: 14px;
+}
+
+.auth-actions { display: grid; gap: 10px; }
+
+.auth-btn-primary {
+	appearance: none;
+	background: #8b5cf6;
+	color: white;
+	border: 1px solid #8b5cf6;
+	border-radius: 10px;
+	padding: 10px 14px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.auth-btn-primary:disabled { opacity: .7; cursor: not-allowed; }
+
+.auth-link { text-align: center; font-size: 13px; color: #cbd5e1; }
+.auth-link button { background: none; border: none; color: #93c5fd; cursor: pointer; padding: 0; font-weight: 600; }
+
+/* Legacy left/right layout removed in favor of centered template */
+
+
