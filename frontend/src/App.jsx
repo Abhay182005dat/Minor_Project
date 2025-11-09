@@ -11,16 +11,33 @@ import './components/UploadLayout.css'
 function RequireAuth({ children, role }) {
 	const location = useLocation()
 	const storedRole = window.localStorage.getItem('petx:role')
-	const isRegistered = window.localStorage.getItem('petx:registered') === 'true'
+	
 	if (!storedRole) {
 		return <Navigate to="/login" state={{ from: location }} replace />
 	}
+	
+	// Check if user is registered (for non-admin users)
+	if (role === 'user' && storedRole === 'user') {
+		try {
+			const userStr = window.localStorage.getItem('petx:user')
+			if (userStr) {
+				const user = JSON.parse(userStr)
+				const emailLower = user.email?.trim().toLowerCase()
+				if (emailLower) {
+					const registeredUsersStr = window.localStorage.getItem('petx:registeredUsers')
+					const registeredUsers = registeredUsersStr ? JSON.parse(registeredUsersStr) : []
+					if (!registeredUsers.includes(emailLower)) {
+						return <Navigate to="/register" state={{ from: location }} replace />
+					}
+				}
+			}
+		} catch {}
+	}
+	
 	if (role && storedRole !== role) {
 		return <Navigate to={storedRole === 'admin' ? '/admin' : '/upload'} replace />
 	}
-	if (role === 'user' && !isRegistered) {
-		return <Navigate to="/register" state={{ from: location }} replace />
-	}
+	
 	return children
 }
 

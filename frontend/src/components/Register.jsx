@@ -16,9 +16,27 @@ export default function Register() {
 		setIsSubmitting(true)
 		setTimeout(() => {
 			try {
-				window.localStorage.setItem('petx:registered', 'true')
+				const emailLower = email.trim().toLowerCase()
+				// Get existing registered users
+				const registeredUsersStr = window.localStorage.getItem('petx:registeredUsers')
+				const registeredUsers = registeredUsersStr ? JSON.parse(registeredUsersStr) : []
+				
+				// Check if email is already registered
+				if (registeredUsers.includes(emailLower)) {
+					setIsSubmitting(false)
+					setError('This email is already registered. Please sign in instead.')
+					return
+				}
+				
+				// Add new email to registered users list
+				registeredUsers.push(emailLower)
+				window.localStorage.setItem('petx:registeredUsers', JSON.stringify(registeredUsers))
 				window.localStorage.setItem('petx:user', JSON.stringify({ email, name }))
-			} catch {}
+			} catch (err) {
+				setIsSubmitting(false)
+				setError('Registration failed. Please try again.')
+				return
+			}
 			navigate('/login', { replace: true })
 		}, 400)
 	}, [email, name, navigate])

@@ -17,14 +17,21 @@ export default function Login() {
 
 		setTimeout(() => {
 			// Simple client-side auth for demo (no backend changes)
-			const isAdmin = email.trim().toLowerCase().startsWith('admin') || email.trim().toLowerCase() === 'shabana@petx'
-			const isUser = !isAdmin
-			const isRegistered = window.localStorage.getItem('petx:registered') === 'true'
-			if (!isAdmin && !isRegistered) {
-				setIsSubmitting(false)
-				setError('Please register before signing in.')
-				return
+			const emailLower = email.trim().toLowerCase()
+			const isAdmin = emailLower.startsWith('admin') || emailLower === 'shabana@petx'
+			
+			// Check if user is registered (for non-admin users)
+			if (!isAdmin) {
+				const registeredUsersStr = window.localStorage.getItem('petx:registeredUsers')
+				const registeredUsers = registeredUsersStr ? JSON.parse(registeredUsersStr) : []
+				
+				if (!registeredUsers.includes(emailLower)) {
+					setIsSubmitting(false)
+					setError('This email is not registered. Please register first.')
+					return
+				}
 			}
+			
 			try {
 				window.localStorage.setItem('petx:role', isAdmin ? 'admin' : 'user')
 				window.localStorage.setItem('petx:user', JSON.stringify({ email }))

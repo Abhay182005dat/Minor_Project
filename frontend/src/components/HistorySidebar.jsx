@@ -35,7 +35,7 @@ export default function HistorySidebar() {
 					<div className="muted">No predictions yet</div>
 				) : (
 					items.map((it) => (
-						<div key={it._id} className="card" style={{ padding: 12 }}>
+						<div key={it._id} className="card" style={{ padding: 12, background: 'rgba(255, 255, 255, .04)' }}>
 							<div style={{ fontWeight: 700 }}>{it.prediction ?? '—'}</div>
 							<div className="muted" style={{ fontSize: 12 }}>{new Date(it.timestamp).toLocaleString()}</div>
 							{it.confidence != null ? <div style={{ fontSize: 12 }}>Confidence: {it.confidence}</div> : null}
