@@ -6,7 +6,8 @@ from dotenv import load_dotenv
 import gc
 
 load_dotenv()
-
+# REPO_ID = Abhay1831/deepfake_v1
+# MODEL = Model.h5                   for resnet
 HF_TOKEN = os.getenv("HF_TOKEN")
 
 model = None
