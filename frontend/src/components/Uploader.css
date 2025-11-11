@@ -10,7 +10,7 @@
 
 .uploader-header {
 	display: flex;
-	
+	justify-content: space-between;
 	align-items: end;
 	gap: 16px;
 	margin-bottom: 12px;
@@ -19,7 +19,7 @@
 .uploader-title { font-weight: 800; letter-spacing: .3px; }
 .uploader-subtitle { opacity: .7; font-size: .9rem; }
 
-.uploader-endpoint { display: grid; gap: 6px; min-width: 320px; }
+.uploader-endpoint { display: grid; gap: 6px; min-width: 320px;margin-left: 106px; }
 .uploader-endpoint-label { font-size: 12px; opacity: .8; }
 .uploader-input {
 	width: 100%;
