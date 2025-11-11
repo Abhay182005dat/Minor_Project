@@ -54,7 +54,7 @@ function UploadPage() {
 		<div className="upload-layout" style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: 0, minHeight: '100vh' }}>
 			<HistorySidebar />
 			<div className="container upload-container" style={{ position: 'relative' }}>
-				<div className="upload-header" style={{ gap: 12, justifyContent: 'center' }}>
+				<div className="upload-header" style={{ gap: 12 }}>
 					<h1 style={{ margin: 0, textAlign: 'center' }}>PetX Image Predictor</h1>
 					<button
 						className="btn"
