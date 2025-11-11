@@ -10,7 +10,7 @@ p { margin: 0 0 16px; opacity: .8; }
 .dropzone:hover { border-color: #3b82f6; }
 .dropzone.dragover { border-color: #3b82f6; }
 .actions { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-.btn { appearance: none; border: 1px solid color-mix(in oklab, CanvasText 12%, transparent); background: color-mix(in oklab, Canvas 90%, transparent); color: CanvasText; padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+.btn { margin-top: 24px;appearance: none; border: 1px solid color-mix(in oklab, CanvasText 12%, transparent); background: color-mix(in oklab, Canvas 90%, transparent); color: CanvasText; padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; }
 .btn.primary { background: #3b82f6; color: white; border-color: #3b82f6; }
 .btn:disabled { opacity: .6; cursor: not-allowed; }
 .preview { display: grid; grid-template-columns: 140px 1fr; gap: 16px; align-items: start; }
