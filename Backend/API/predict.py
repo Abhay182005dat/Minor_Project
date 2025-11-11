@@ -8,6 +8,9 @@ import gc
 load_dotenv()
 # REPO_ID = Abhay1831/deepfake_v1
 # MODEL = Model.h5                   for resnet
+
+# REPO_ID = Abhay1831/SE_Attention
+# MODEL = best_se_model.h5
 HF_TOKEN = os.getenv("HF_TOKEN")
 
 model = None
@@ -45,7 +48,7 @@ def load_model_once():
 
     # Load once and compile
     model = tf.keras.models.load_model(MODEL_PATH, compile=False)
-    model.compile(optimizer=Adam(learning_rate=0.001),
+    model.compile(optimizer=Adam(learning_rate=0.0001),
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
 
