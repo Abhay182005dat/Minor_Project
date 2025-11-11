@@ -21,7 +21,7 @@ export default function LandingPage() {
 	return (
 		<div className="landing-page minimal">
 			<header className="navbar simple">
-				<div className="nav-left">PetX</div>
+				<div className="nav-left">DeepFake</div>
 				<div className="nav-right">
 					<button className="btn-nav" onClick={() => navigate('/login')}>Log in</button>
 					<button className="btn-nav primary" onClick={() => navigate('/register')}>Get Started</button>

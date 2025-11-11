@@ -55,7 +55,7 @@ function UploadPage() {
 			<HistorySidebar />
 			<div className="container upload-container" style={{ position: 'relative' }}>
 				<div className="upload-header" style={{ gap: 12 }}>
-					<h1 style={{ margin: 0, textAlign: 'center' }}>PetX Image Predictor</h1>
+					<h1 style={{ margin: 0, textAlign: 'center' }}>DeepFake Image Predictor</h1>
 					<button
 						className="btn"
 						onClick={() => {
