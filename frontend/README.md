@@ -88,6 +88,31 @@ frontend/
 
 ## 🔧 Configuration
 
+### Google OAuth Setup
+
+To enable Google OAuth authentication, you need to:
+
+1. **Create a Google OAuth Client ID**:
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project or select an existing one
+   - Enable the Google+ API
+   - **Important for Branding section**: In the "Branding" section, you cannot use `localhost` in the "Application home page" field. Either leave it empty or use a placeholder domain (e.g., `https://example.com`). This field is only for display on the consent screen.
+   - Go to "Credentials" → "Create Credentials" → "OAuth client ID"
+   - Choose "Web application"
+   - **Add authorized JavaScript origins**: Add `http://localhost:5173` (and `http://127.0.0.1:5173` if needed)
+   - **Add authorized redirect URIs**: Add `http://localhost:5173` (and `http://127.0.0.1:5173` if needed)
+   - Copy your Client ID
+
+2. **Set the Client ID**:
+   - Create a `.env` file in the `frontend` directory
+   - Add your Google Client ID:
+     ```
+     VITE_GOOGLE_CLIENT_ID=your-client-id-here.apps.googleusercontent.com
+     ```
+   - Or replace `YOUR_GOOGLE_CLIENT_ID_HERE` in `src/main.jsx` directly
+
+3. **Restart the development server** after setting the environment variable
+
 ### API Endpoints
 
 The application supports two backend endpoints:
